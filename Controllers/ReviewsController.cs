@@ -84,17 +84,21 @@ namespace APIProject.Controllers
     [HttpPut("{id}")]
     public void Put(int id, [FromBody]Review review)
     {
-      review.ReviewId = id;
-      if (review.UserName == _db.Reviews.FirstOrDefault(entry => entry.ReviewId == id)?.UserName)
+      Review comparisonReview = _db.Reviews.FirstOrDefault(entry => entry.ReviewId == id);
+
+      if (review.UserName == comparisonReview.UserName)
       {
-        _db.Entry(review).State = EntityState.Modified;
+        _db.Reviews.Remove(comparisonReview);
+        _db.SaveChanges();
+        review.ReviewId = id;
+        _db.Reviews.Add(review);
         _db.SaveChanges();
       }
+
     }    
     [HttpDelete("{id}")]
     public void Delete(int id, [FromBody]string userName)
     {
-      Console.WriteLine(userName);
       Review reviewToDelete = _db.Reviews.FirstOrDefault(entry => entry.ReviewId == id);
       if (reviewToDelete.UserName == userName)
       {

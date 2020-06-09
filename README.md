@@ -52,6 +52,8 @@ Edits and deletes are qualified; unless the given username in the PUT or DELETE 
 
 DELETE http://localhost:5000/api/reviews/[id] | AND | "name" in body as username, to succesfully delete.  
 
+PUT http://localhost:5000/api/reviews/[id] | AND | { "City": "X", "Country": "Y", "username": "Z", "rating": 0.0}   
+
 
 ##### Development Description:
 
