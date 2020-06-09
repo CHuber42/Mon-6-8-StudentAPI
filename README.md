@@ -42,9 +42,15 @@ To interact with this app & its database, API queries will be necessary. There a
 
 To see all reviews, issue a get request to http://localhost:5000/api/reviews  
 Current custom-sorts for queries utilize the "filter" field. EG:  
+
 GET http://localhost:5000/api/reviews?filter=number_of_ratings  
-or
+returns reviews sorted highest-rated to lowest-rated by total number of reviews  
+
 GET http://localhost:5000/api/reviews?filter=overall_ratings  
+returns reviews sorted highest-rated to lowest-rated by average rating   
+
+GET http://localhost:5000/api/reviews?filter=random  
+returns a random review   
 
 POSTs to the database can be done utilizing POST to api/reviews.  
 
@@ -53,6 +59,8 @@ Edits and deletes are qualified; unless the given username in the PUT or DELETE 
 DELETE http://localhost:5000/api/reviews/[id] | AND | "name" in body as username, to succesfully delete.  
 
 PUT http://localhost:5000/api/reviews/[id] | AND | { "City": "X", "Country": "Y", "username": "Z", "rating": 0.0}   
+
+
 
 
 ##### Development Description:

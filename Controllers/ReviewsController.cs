@@ -46,6 +46,12 @@ namespace APIProject.Controllers
           var newQuery = query.OrderByDescending(x => x.NumberOfRatings);
           return newQuery.ToList();
         }
+        else if (filter == "random")
+        {
+          var rand = new Random();
+          int index = rand.Next(1, query.Count());
+          query = query.Where(entry => entry.ReviewId == index);
+        }
       }
 
       return query.ToList();
