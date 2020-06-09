@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System;
 
 namespace APIProject.Controllers
 {
@@ -84,18 +85,18 @@ namespace APIProject.Controllers
     public void Put(int id, [FromBody]Review review)
     {
       review.ReviewId = id;
-      Review targetReview = _db.Reviews.FirstOrDefault(entry => entry.ReviewId == id);
-      if (targetReview.UserName == review.UserName)
+      if (review.UserName == _db.Reviews.FirstOrDefault(entry => entry.ReviewId == id)?.UserName)
       {
         _db.Entry(review).State = EntityState.Modified;
         _db.SaveChanges();
       }
     }    
-    [HttpDelete]
-    public void Delete(int id, string user_name)
+    [HttpDelete("{id}")]
+    public void Delete(int id, [FromBody]string userName)
     {
-      var reviewToDelete = _db.Reviews.FirstOrDefault(entry => entry.ReviewId == id);
-      if (reviewToDelete.UserName == user_name)
+      Console.WriteLine(userName);
+      Review reviewToDelete = _db.Reviews.FirstOrDefault(entry => entry.ReviewId == id);
+      if (reviewToDelete.UserName == userName)
       {
         _db.Reviews.Remove(reviewToDelete);
         _db.SaveChanges();
