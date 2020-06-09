@@ -1,17 +1,17 @@
-using Destination.Models;
+using APIProject.Models;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
-namespace DestinationControllers
+namespace APIProjectControllers
 {
   [Route("api/[controller]")]
   [ApiController]
-  public class DestinationController : ControllerBase
+  public class ReviewController : ControllerBase
   {
-    private DestinationContext _db;
-    public DestinationController(DestinationContext db)
+    private APIProjectContext _db;
+    public ReviewController(APIProjectContext db)
     {
       _db = db;
     }

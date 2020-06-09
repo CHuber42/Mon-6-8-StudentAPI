@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace APIProject.Migrations
 {
-    public partial class Initial : Migration
+    public partial class RenameSchema : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -13,10 +13,12 @@ namespace APIProject.Migrations
                 {
                     ReviewId = table.Column<int>(nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    Rating = table.Column<int>(nullable: false),
+                    Rating = table.Column<float>(nullable: false),
                     City = table.Column<string>(nullable: false),
                     Country = table.Column<string>(nullable: false),
-                    UserName = table.Column<string>(nullable: false)
+                    UserName = table.Column<string>(nullable: false),
+                    OverallRating = table.Column<float>(nullable: true),
+                    NumberOfRatings = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {

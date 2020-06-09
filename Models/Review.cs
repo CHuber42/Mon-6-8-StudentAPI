@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace Destination.Models
+namespace APIProject.Models
 {
   public class Review
   {
