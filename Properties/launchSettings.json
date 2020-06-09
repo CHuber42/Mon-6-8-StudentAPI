@@ -17,7 +17,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "TravelDestinations": {
+    "APIProject": {
       "commandName": "Project",
       "launchBrowser": true,
       "launchUrl": "api/values",

@@ -4,14 +4,14 @@ using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
-namespace APIProjectControllers
+namespace APIProject.Controllers
 {
   [Route("api/[controller]")]
   [ApiController]
-  public class ReviewController : ControllerBase
+  public class ReviewsController : ControllerBase
   {
     private APIProjectContext _db;
-    public ReviewController(APIProjectContext db)
+    public ReviewsController(APIProjectContext db)
     {
       _db = db;
     }
@@ -37,11 +37,13 @@ namespace APIProjectControllers
       {
         if (filter == "overall_ratings")
         {
-          query.OrderBy(x => x.OverallRating);
+          var newQuery = query.OrderByDescending(x => x.OverallRating);
+          return newQuery.ToList();
         }
         else if (filter == "number_of_ratings")
         {
-          query.OrderBy(x => x.NumberOfRatings);
+          var newQuery = query.OrderByDescending(x => x.NumberOfRatings);
+          return newQuery.ToList();
         }
       }
 
